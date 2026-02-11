@@ -1,0 +1,28 @@
+name: LinterCheck Example
+
+on: 
+  push: 
+    branches:
+      - main
+  pull_request: 
+    branches:
+      - main
+
+jobs:
+  linterCheck:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: Checkout
+      uses: actions/checkout@v6
+
+    - name: Golangci-lint
+      uses: actions/setup-go@v6
+      with:
+        go-version: stable
+        cache: true
+
+    - name: golangci-lint
+      uses: golangci/golangci-lint-action@v9
+      with:
+        version: v2.6
